@@ -13,7 +13,7 @@ const ContextMenuGroup = ContextMenuPrimitive.Group;
 const ContextMenuRadioGroup = ContextMenuPrimitive.RadioGroup;
 
 const ContextMenu: Component<ContextMenuPrimitive.ContextMenuRootProps> = (
-  props
+  props,
 ) => {
   return <ContextMenuPrimitive.Root gutter={4} {...props} />;
 };
@@ -24,7 +24,7 @@ type ContextMenuContentProps<T extends ValidComponent = "div"> =
   };
 
 const ContextMenuContent = <T extends ValidComponent = "div">(
-  props: PolymorphicProps<T, ContextMenuContentProps<T>>
+  props: PolymorphicProps<T, ContextMenuContentProps<T>>,
 ) => {
   const [local, others] = splitProps(props as ContextMenuContentProps, [
     "class",
@@ -34,7 +34,7 @@ const ContextMenuContent = <T extends ValidComponent = "div">(
       <ContextMenuPrimitive.Content
         class={cn(
           "z-50 min-w-32 origin-[var(--kb-menu-content-transform-origin)] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md animate-in",
-          local.class
+          local.class,
         )}
         {...others}
       />
@@ -48,14 +48,14 @@ type ContextMenuItemProps<T extends ValidComponent = "div"> =
   };
 
 const ContextMenuItem = <T extends ValidComponent = "div">(
-  props: PolymorphicProps<T, ContextMenuItemProps<T>>
+  props: PolymorphicProps<T, ContextMenuItemProps<T>>,
 ) => {
   const [local, others] = splitProps(props as ContextMenuItemProps, ["class"]);
   return (
     <ContextMenuPrimitive.Item
       class={cn(
         "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-        local.class
+        local.class,
       )}
       {...others}
     />
@@ -78,7 +78,7 @@ type ContextMenuSeparatorProps<T extends ValidComponent = "hr"> =
   };
 
 const ContextMenuSeparator = <T extends ValidComponent = "hr">(
-  props: PolymorphicProps<T, ContextMenuSeparatorProps<T>>
+  props: PolymorphicProps<T, ContextMenuSeparatorProps<T>>,
 ) => {
   const [local, others] = splitProps(props as ContextMenuSeparatorProps, [
     "class",
@@ -98,7 +98,7 @@ type ContextMenuSubTriggerProps<T extends ValidComponent = "div"> =
   };
 
 const ContextMenuSubTrigger = <T extends ValidComponent = "div">(
-  props: PolymorphicProps<T, ContextMenuSubTriggerProps<T>>
+  props: PolymorphicProps<T, ContextMenuSubTriggerProps<T>>,
 ) => {
   const [local, others] = splitProps(props as ContextMenuSubTriggerProps, [
     "class",
@@ -108,7 +108,7 @@ const ContextMenuSubTrigger = <T extends ValidComponent = "div">(
     <ContextMenuPrimitive.SubTrigger
       class={cn(
         "flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent",
-        local.class
+        local.class,
       )}
       {...others}
     >
@@ -135,7 +135,7 @@ type ContextMenuSubContentProps<T extends ValidComponent = "div"> =
   };
 
 const ContextMenuSubContent = <T extends ValidComponent = "div">(
-  props: PolymorphicProps<T, ContextMenuSubContentProps<T>>
+  props: PolymorphicProps<T, ContextMenuSubContentProps<T>>,
 ) => {
   const [local, others] = splitProps(props as ContextMenuSubContentProps, [
     "class",
@@ -144,7 +144,7 @@ const ContextMenuSubContent = <T extends ValidComponent = "div">(
     <ContextMenuPrimitive.SubContent
       class={cn(
         "z-50 min-w-32 origin-[var(--kb-menu-content-transform-origin)] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md animate-in",
-        local.class
+        local.class,
       )}
       {...others}
     />
@@ -158,7 +158,7 @@ type ContextMenuCheckboxItemProps<T extends ValidComponent = "div"> =
   };
 
 const ContextMenuCheckboxItem = <T extends ValidComponent = "div">(
-  props: PolymorphicProps<T, ContextMenuCheckboxItemProps<T>>
+  props: PolymorphicProps<T, ContextMenuCheckboxItemProps<T>>,
 ) => {
   const [local, others] = splitProps(props as ContextMenuCheckboxItemProps, [
     "class",
@@ -168,7 +168,7 @@ const ContextMenuCheckboxItem = <T extends ValidComponent = "div">(
     <ContextMenuPrimitive.CheckboxItem
       class={cn(
         "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-        local.class
+        local.class,
       )}
       {...others}
     >
@@ -199,7 +199,7 @@ type ContextMenuGroupLabelProps<T extends ValidComponent = "span"> =
   };
 
 const ContextMenuGroupLabel = <T extends ValidComponent = "span">(
-  props: PolymorphicProps<T, ContextMenuGroupLabelProps<T>>
+  props: PolymorphicProps<T, ContextMenuGroupLabelProps<T>>,
 ) => {
   const [local, others] = splitProps(props as ContextMenuGroupLabelProps, [
     "class",
@@ -219,7 +219,7 @@ type ContextMenuRadioItemProps<T extends ValidComponent = "div"> =
   };
 
 const ContextMenuRadioItem = <T extends ValidComponent = "div">(
-  props: PolymorphicProps<T, ContextMenuRadioItemProps<T>>
+  props: PolymorphicProps<T, ContextMenuRadioItemProps<T>>,
 ) => {
   const [local, others] = splitProps(props as ContextMenuRadioItemProps, [
     "class",
@@ -229,7 +229,7 @@ const ContextMenuRadioItem = <T extends ValidComponent = "div">(
     <ContextMenuPrimitive.RadioItem
       class={cn(
         "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-        local.class
+        local.class,
       )}
       {...others}
     >
