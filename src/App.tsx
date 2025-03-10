@@ -25,7 +25,7 @@ const TextEditor: Component<{ lines: Line[] }> = (props) => {
       contenteditable={true}
       role="textbox"
       aria-multiline="true"
-      class="mx-auto max-w-prose my-2 border-2 p-4"
+      class="mx-auto max-w-prose my-2 border-2 p-4 h-90"
       title="Rich Text Editor"
     >
       <For each={props.lines}>
