@@ -4,11 +4,12 @@ import {
   ContextMenuPortal,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
+import { ParentComponent } from "solid-js";
 
-export default function ContextMenuDemo({ children }) {
+const ContextMenuDemo: ParentComponent = (props) => {
   return (
     <ContextMenu>
-      <ContextMenuTrigger class="inline">{children}</ContextMenuTrigger>
+      <ContextMenuTrigger class="inline">{props.children}</ContextMenuTrigger>
       <ContextMenuPortal>
         <ContextMenuContent class="w-60">
           <h2 class="font-bold">Grammar Error</h2>
@@ -23,4 +24,6 @@ export default function ContextMenuDemo({ children }) {
       </ContextMenuPortal>
     </ContextMenu>
   );
-}
+};
+
+export default ContextMenuDemo;
