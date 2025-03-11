@@ -3,7 +3,7 @@ import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
 import solid from "eslint-plugin-solid/configs/recommended";
 import "eslint-plugin-only-warn";
-import * as tsParser from "@typescript-eslint/parser";
+import tsParser from "@typescript-eslint/parser";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
