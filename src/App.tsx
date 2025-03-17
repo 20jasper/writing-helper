@@ -1,15 +1,10 @@
-import {
-  createResource,
-  createSignal,
-  For,
-  ParentComponent,
-  type Component,
-} from "solid-js";
+import { createSignal, For, ParentComponent, type Component } from "solid-js";
 import ContextMenu from "@/components/ContextMenu";
+import { Button } from "./components/ui/button";
 
-const InlineError: ParentComponent = (props) => {
+const InlineError: ParentComponent<{ error: string }> = (props) => {
   return (
-    <ContextMenu>
+    <ContextMenu error={props.error}>
       <span
         id="error"
         class="underline decoration-red-500 decoration-2"
@@ -23,28 +18,33 @@ const InlineError: ParentComponent = (props) => {
 
 type Line = {
   text: string;
-  spans: { kind: "ok" | "error"; start: number; end: number }[];
+  spans: { error: string | null; start: number; end: number }[];
 };
-const TextEditor: Component<{ lines: Line[] }> = (props) => {
+
+const TextEditor: Component<{
+  lines: Line[];
+  ref: HTMLDivElement | undefined;
+}> = (props) => {
   return (
     <div
       contenteditable={true}
       role="textbox"
       aria-multiline="true"
-      class="mx-auto max-w-prose my-2 border-2 p-4 h-90"
+      class="mx-auto w-3/6 my-2 border-2 p-4 h-90"
       title="Rich Text Editor"
+      ref={props.ref}
     >
       <For each={props.lines}>
         {({ text, spans }) => {
           return (
             <p>
               <For each={spans}>
-                {({ kind, start, end }) => {
+                {({ error, start, end }) => {
                   const slice = text.slice(start, end);
-                  return kind === "ok" ? (
+                  return !error ? (
                     <>{slice}</>
                   ) : (
-                    <InlineError>{slice}</InlineError>
+                    <InlineError error={error}>{slice}</InlineError>
                   );
                 }}
               </For>
@@ -58,32 +58,39 @@ const TextEditor: Component<{ lines: Line[] }> = (props) => {
 
 const App: Component = () => {
   const text2: Line[] = [
-    { text: "hello", spans: [{ start: 0, end: Infinity, kind: "ok" }] },
+    { text: "hello", spans: [{ start: 0, end: Infinity, error: null }] },
     {
       text: "gamer hello cool is hello",
       spans: [
-        { start: 0, end: 5, kind: "ok" },
-        { start: 5, end: 17, kind: "error" },
-        { start: 17, end: 19, kind: "ok" },
-        { start: 19, end: Infinity, kind: "error" },
+        { start: 0, end: 5, error: null },
+        { start: 5, end: 17, error: "uh oh broken" },
+        { start: 17, end: 19, error: null },
+        { start: 19, end: Infinity, error: "uh oh broken" },
       ],
     },
   ];
 
   const [text, setText] = createSignal(text2);
+  let editor: HTMLDivElement | undefined;
 
   const fetchLines = async () => {
-    const data = await fetch("http://localhost:3003/test");
+    console.log("text from editor\n---\n", editor.innerText);
+    const data = await fetch("http://localhost:3003/test", {
+      method: "POST",
+      body: JSON.stringify(editor.innerText.split("\n")),
+    });
     const json = await data.json();
+
+    console.log(json);
 
     setText(json);
   };
 
   return (
-    <main>
+    <main class="flex flex-col justify-center items-center">
       <h1 class="text-center text-xl py-2">Writing Helper</h1>
-      <TextEditor lines={text()} />
-      <button onClick={fetchLines}>Check Info</button>
+      <TextEditor ref={editor} lines={text()} />
+      <Button onClick={fetchLines}>Check for Errors</Button>
     </main>
   );
 };
