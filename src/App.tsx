@@ -1,4 +1,10 @@
-import { For, ParentComponent, type Component } from "solid-js";
+import {
+  createResource,
+  createSignal,
+  For,
+  ParentComponent,
+  type Component,
+} from "solid-js";
 import ContextMenu from "@/components/ContextMenu";
 
 const InlineError: ParentComponent = (props) => {
@@ -51,7 +57,7 @@ const TextEditor: Component<{ lines: Line[] }> = (props) => {
 };
 
 const App: Component = () => {
-  const text: Line[] = [
+  const text2: Line[] = [
     { text: "hello", spans: [{ start: 0, end: Infinity, kind: "ok" }] },
     {
       text: "gamer hello cool is hello",
@@ -63,10 +69,21 @@ const App: Component = () => {
       ],
     },
   ];
+
+  const [text, setText] = createSignal(text2);
+
+  const fetchLines = async () => {
+    const data = await fetch("http://localhost:3003/test");
+    const json = await data.json();
+
+    setText(json);
+  };
+
   return (
     <main>
       <h1 class="text-center text-xl py-2">Writing Helper</h1>
-      <TextEditor lines={text} />
+      <TextEditor lines={text()} />
+      <button onClick={fetchLines}>Check Info</button>
     </main>
   );
 };
