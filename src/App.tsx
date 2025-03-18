@@ -7,7 +7,7 @@ const InlineError: ParentComponent<{ error: string }> = (props) => {
     <ContextMenu error={props.error}>
       <span
         id="error"
-        class="underline decoration-red-500 decoration-2"
+        class="bg-[url(/squiggly-boy.svg)] bg-[0_calc(100%_+_1px)] bg-repeat-x"
         aria-invalid="grammar"
       >
         {props.children}
@@ -30,7 +30,7 @@ const TextEditor: Component<{
       contenteditable={true}
       role="textbox"
       aria-multiline="true"
-      class="mx-auto w-3/6 my-2 border-2 p-4 h-90"
+      class="mx-auto w-3/6 my-2 border-2 p-4 h-90 whitespace-pre-wrap"
       title="Rich Text Editor"
       ref={props.ref}
     >
@@ -74,10 +74,11 @@ const App: Component = () => {
   let editor: HTMLDivElement | undefined;
 
   const fetchLines = async () => {
-    console.log("text from editor\n---\n", editor.innerText);
+    const text = editor.innerText.split("\n\n");
+    console.log(text);
     const data = await fetch("http://localhost:3003/test", {
       method: "POST",
-      body: JSON.stringify(editor.innerText.split("\n")),
+      body: JSON.stringify(text),
     });
     const json = await data.json();
 
