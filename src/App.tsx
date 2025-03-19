@@ -1,4 +1,10 @@
-import { createSignal, For, ParentComponent, type Component } from "solid-js";
+import {
+  createSignal,
+  For,
+  ParentComponent,
+  Switch,
+  type Component,
+} from "solid-js";
 import ContextMenu from "@/components/ContextMenu";
 import { Button } from "./components/ui/button";
 
@@ -84,14 +90,20 @@ const App: Component = () => {
 
     console.log(json);
 
-    setText(json);
+    setText(json.map(([_, x]) => x));
   };
+
+  // let select: HTMLSelectElement | undefined;
 
   return (
     <main class="flex flex-col justify-center items-center">
       <h1 class="text-center text-xl py-2">Writing Helper</h1>
       <TextEditor ref={editor} lines={text()} />
       <Button onClick={fetchLines}>Check for Errors</Button>
+      {/* <select ref={select}>
+        <option value="capitals">Capitals</option>
+        <option value="glue">Glue</option>
+      </select> */}
     </main>
   );
 };
