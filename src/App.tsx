@@ -1,10 +1,4 @@
-import {
-  createSignal,
-  For,
-  ParentComponent,
-  Switch,
-  type Component,
-} from "solid-js";
+import { createSignal, For, ParentComponent, type Component } from "solid-js";
 import ContextMenu from "@/components/ContextMenu";
 import { Button } from "./components/ui/button";
 
