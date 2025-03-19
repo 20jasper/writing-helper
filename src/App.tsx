@@ -36,7 +36,7 @@ const TextEditor: Component<{
       contenteditable={true}
       role="textbox"
       aria-multiline="true"
-      class="mx-auto w-3/6 my-2 border-2 p-4 h-90 whitespace-pre-wrap"
+      class="mx-auto w-3/6 my-2 border-2 p-4 min-h-90 whitespace-pre-wrap"
       title="Rich Text Editor"
       ref={props.ref}
     >
