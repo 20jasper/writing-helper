@@ -63,21 +63,37 @@ const TextEditor: Component<{
 };
 
 const App: Component = () => {
-  const text2: Line[] = [
-    { text: "hello", spans: [{ start: 0, end: Infinity, error: null }] },
-    {
-      text: "gamer hello cool is hello",
-      spans: [
-        { start: 0, end: 5, error: null },
-        { start: 5, end: 17, error: "uh oh broken" },
-        { start: 17, end: 19, error: null },
-        { start: 19, end: Infinity, error: "uh oh broken" },
-      ],
-    },
+  const text2: Line[][] = [
+    [
+      {
+        spans: [
+          {
+            end: 2,
+            error: "Sentences should begin with a capital letter",
+            start: 0,
+          },
+          { end: 999999, error: null, start: 2 },
+        ],
+        text: "hi hi the the the the",
+      },
+      {
+        spans: [
+          {
+            end: 999999999,
+            error: "Glue percentage too high: 66.7%",
+            start: 0,
+          },
+        ],
+        text: "hi hi the the the the",
+      },
+    ],
   ];
 
   const [text, setText] = createSignal(text2);
   let editor: HTMLDivElement | undefined;
+
+  const [i, setI] = createSignal(0);
+  const currText = () => text().map((xs) => xs[i()]);
 
   const fetchLines = async () => {
     const text = editor.innerText.split("\n\n");
@@ -88,22 +104,20 @@ const App: Component = () => {
     });
     const json = await data.json();
 
-    console.log(json);
+    console.debug(json);
 
-    setText(json.map(([_, x]) => x));
+    setText(json);
   };
-
-  // let select: HTMLSelectElement | undefined;
 
   return (
     <main class="flex flex-col justify-center items-center">
       <h1 class="text-center text-xl py-2">Writing Helper</h1>
-      <TextEditor ref={editor} lines={text()} />
+      <TextEditor ref={editor} lines={currText()} />
       <Button onClick={fetchLines}>Check for Errors</Button>
-      {/* <select ref={select}>
-        <option value="capitals">Capitals</option>
-        <option value="glue">Glue</option>
-      </select> */}
+      <select onChange={(e) => setI(+e.target.value)}>
+        <option value="0">Capitals</option>
+        <option value="1">Glue</option>
+      </select>
     </main>
   );
 };
