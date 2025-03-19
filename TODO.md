@@ -1,0 +1,3 @@
+- [] test rendering logic
+- [] figure out why text is duplicated sometimes on requests
+- [] use solidui select

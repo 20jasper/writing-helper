@@ -38,6 +38,7 @@ const TextEditor: Component<{
       aria-multiline="true"
       class="mx-auto w-3/6 my-2 border-2 p-4 min-h-90 whitespace-pre-wrap"
       title="Rich Text Editor"
+      spellcheck={false}
       ref={props.ref}
     >
       <For each={props.lines}>
