@@ -25,7 +25,7 @@ importers:
         version: 3.0.2
       tailwindcss-animate:
         specifier: ^1.0.7
-        version: 1.0.7(tailwindcss@4.0.7)
+        version: 1.0.7(tailwindcss@4.1.16)
     devDependencies:
       '@eslint/js':
         specifier: ^9.22.0
@@ -56,7 +56,7 @@ importers:
         version: 3.5.3
       tailwindcss:
         specifier: ^4.0.7
-        version: 4.0.7
+        version: 4.1.16
       typescript:
         specifier: ^5.7.2
         version: 5.7.2
@@ -1344,6 +1344,9 @@ packages:
 
   tailwindcss@4.0.7:
     resolution: {integrity: sha512-yH5bPPyapavo7L+547h3c4jcBXcrKwybQRjwdEIVAd9iXRvy/3T1CC6XSQEgZtRySjKfqvo3Cc0ZF1DTheuIdA==}
+
+  tailwindcss@4.1.16:
+    resolution: {integrity: sha512-pONL5awpaQX4LN5eiv7moSiSPd/DLDzKVRJz8Q9PgzmAdd1R4307GQS2ZpfiN7ZmekdQrfhZZiSE5jkLR4WNaA==}
 
   tapable@2.2.1:
     resolution: {integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==}
@@ -2687,11 +2690,13 @@ snapshots:
 
   tailwind-merge@3.0.2: {}
 
-  tailwindcss-animate@1.0.7(tailwindcss@4.0.7):
+  tailwindcss-animate@1.0.7(tailwindcss@4.1.16):
     dependencies:
-      tailwindcss: 4.0.7
+      tailwindcss: 4.1.16
 
   tailwindcss@4.0.7: {}
+
+  tailwindcss@4.1.16: {}
 
   tapable@2.2.1: {}
 
